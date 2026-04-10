@@ -1,8 +1,13 @@
 import { ArrowDown } from "lucide-react";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
       {/* Background */}
       <div className="absolute inset-0 gradient-navy opacity-95" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(45_85%_55%/0.15),transparent_50%)]" />
@@ -10,12 +15,16 @@ export default function HeroSection() {
 
       <div className="container relative z-10 pt-24 pb-16">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-8 animate-fade-up">
+          {/* Substituído a div genérica pelo Badge do shadcn */}
+          <Badge
+            variant="secondary"
+            className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-8 animate-fade-up border-none hover:bg-transparent"
+          >
             <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
             <span className="text-sm font-medium text-primary-foreground/90">
               Pré-Lançamento Oficial
             </span>
-          </div>
+          </Badge>
 
           <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground leading-tight mb-6 animate-fade-up-delay-1">
             Alugue seu imóvel para a{" "}
@@ -24,30 +33,41 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-lg md:text-xl text-primary-foreground/75 mb-10 max-w-2xl mx-auto animate-fade-up-delay-2">
-            Cadastre seu imóvel no programa oficial de locação da Prefeitura de Aracaju.
-            Renda garantida, contratos seguros e impacto social para a cidade.
+            Cadastre seu imóvel no programa oficial de locação da Prefeitura de
+            Aracaju. Renda garantida, contratos seguros e impacto social para a
+            cidade.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-delay-3">
-            <a
-              href="#cadastro"
-              className="gradient-gold text-secondary-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
+            {/* Uso do Button com asChild para manter a tag <a> na renderização final */}
+            <Button
+              asChild
+              className="gradient-gold text-secondary-foreground px-8 h-14 rounded-xl text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
             >
-              Fazer Pré-Cadastro
-            </a>
-            <a
-              href="#vantagens"
-              className="glass text-primary-foreground px-8 py-4 rounded-xl text-lg font-semibold hover:bg-primary-foreground/10 transition-colors"
+              <a href="#cadastro">Fazer Pré-Cadastro</a>
+            </Button>
+
+            <Button
+              asChild
+              variant="outline"
+              className="glass text-primary-foreground px-8 h-14 rounded-xl text-lg font-semibold hover:bg-primary-foreground/10 transition-colors border-transparent"
             >
-              Saiba Mais
-            </a>
+              <a href="#vantagens">Saiba Mais</a>
+            </Button>
           </div>
         </div>
 
         <div className="flex justify-center mt-16 animate-bounce">
-          <a href="#vantagens" className="text-primary-foreground/50 hover:text-primary-foreground transition-colors">
-            <ArrowDown size={28} />
-          </a>
+          <Button
+            asChild
+            variant="ghost"
+            size="icon"
+            className="w-14 h-14 rounded-full text-primary-foreground/50 hover:text-primary-foreground hover:bg-primary-foreground/10 transition-colors"
+          >
+            <a href="#vantagens">
+              <ArrowDown size={28} />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
